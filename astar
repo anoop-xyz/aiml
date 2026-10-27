@@ -53,3 +53,55 @@ h = {
 start = 'S'
 goal = 'G'
 print("Path:", a_star(graph, h, start, goal))
+
+#test case 2
+graph = {
+    'S': [('G', 2), ('A', 5)],
+    'A': [('G', 4)],
+    'G': []
+}
+
+h = {
+    'S': 2,
+    'A': 3,
+    'G': 0
+}
+start = 'S'
+goal = 'G'
+print("Path:", a_star(graph, h, start, goal))
+
+#testcase 3
+graph = {
+    'S': [('A', 2)],
+    'A': [('B', 3)],
+    'B': [],
+    'G': []
+}
+
+h = {
+    'S': 4,
+    'A': 2,
+    'B': 1,
+    'G': 0
+}
+start = 'S'
+goal = 'G'
+print("Path:", a_star(graph, h, start, goal))
+
+#testcase 4
+graph = {
+    'S': [('A', 2), ('B', 1)],
+    'A': [('G', 2)],
+    'B': [('G', 10)],
+    'G': []
+}
+
+h = {
+    'S': 3,
+    'A': 100,
+    'B': 1,
+    'G': 0
+}
+start = 'S'
+goal = 'G'
+print("Path:", a_star(graph, h, start, goal))
