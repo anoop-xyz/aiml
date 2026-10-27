@@ -1,0 +1,55 @@
+def a_star(graph, h, start, goal):
+    open_set = {start}
+    closed_set = set()
+
+    g = {start: 0}
+    parent = {start: None}
+
+    while open_set:
+        n = min(open_set, key=lambda x: g[x] + h[x])
+
+        if n == goal:
+            path = []
+            while n is not None:
+                path.append(n)
+                n = parent[n]
+            path.reverse()
+            return path
+
+        open_set.remove(n)
+        closed_set.add(n)
+
+        for m, cost in graph[n]:
+            new_cost = g[n] + cost
+
+            if new_cost < g.get(m, float("inf")):
+                g[m] = new_cost
+                parent[m] = n
+                open_set.add(m)
+                closed_set.discard(m)
+
+    return "Path not found"
+
+
+# TEST CASE 1
+graph = {
+    'S': [('A', 1), ('C', 10)],
+    'A': [('B', 2), ('C', 1)],
+    'B': [('D', 5)],
+    'C': [('D', 3), ('G', 4)],
+    'D': [('G', 2)],
+    'G': []
+}
+
+h = {
+    'S': 5,
+    'A': 3,
+    'B': 4,
+    'C': 2,
+    'D': 1,
+    'G': 0
+}
+
+start = 'S'
+goal = 'G'
+print("Path:", a_star(graph, h, start, goal))
